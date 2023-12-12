@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Calculadora</title>
+</head>
+<body>
+    <div id="calculator">
+      <input type="text" id="display" readonly>
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button onclick="appendNumber('0')">0</button>
+      <button onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="operate('/')">/</button>
+      <button class="operator" onclick="operate('+')">+</button>
+      <button class="operator" onclick="operate('-')">-</button>
+      <button class="operator" onclick="operate('*')">*</button>
+      <div class="input-resul">
+      <button class="resultado" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+  <script>
+    let displayValue = '';
+
+    function appendNumber(number) {
+      displayValue += number;
+      updateDisplay();
+    }
+
+    function operate(operator) {
+      displayValue += ` ${operator} `;
+      updateDisplay();
+    }
+
+    function calculate() {
+        try {
+        displayValue = String(eval(displayValue));
+      } catch (error) {
+        displayValue = 'Error';
+      }
+      updateDisplay();
+      
+    }
+
+    function clearDisplay() {
+      displayValue = '';
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById('display').value = displayValue;
+    }
+  </script>
+</body>
+</html>
